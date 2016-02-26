@@ -3,33 +3,35 @@ ini_set('display_errors',1);
 ini_set('display_startup_erros',1);
 error_reporting(E_ALL);
 
-if( !isset($_GET['url']) ) {
-	echo '';
-	die();
+function getClientUrl(){
+	if( isset($_GET['url']) ) {
+		$clientURL = trim(strip_tags( $_GET['url'] ));
+		return $clientURL;
+	}
 }
 
-$clientURL = mysql_real_escape_string($_GET['url']);
-echo $clientURL . '<br>';
-
-
-
-//Gera uma string aleatoria
+//generate one random token for shortness url
 function getRandomToken($size){
-$str = 'abcdefghijlmnopkrstuvxzABCDEFGHIJLMNOPQRSTUVXZ';
+	
+	$str = 'abcdefghijlmnopkrstuvxzABCDEFGHIJLMNOPQRSTUVXZ';
 	$token = ''; 
 	for($i=0; $i<$size; $i++){
 		$token .= $str[rand(1,46)];
  	}
- 	$token = 'go.co/'.$token;
+ 	$domain = 'localhost/';
+ 	$token = $domain.$token;
  	return $token;
 }
+//store url inside of database
+function storeShortUrl($shortURL, $clientURL){
 
-$shortUrl = getRandomToken(5);
+	$query = "INSERT INTO urls (shortURL, clientURL) VALUES ('$shortURL', '$clientURL')";
+	$connection = new PDO("mysql:host=localhost;dbname=shortener", "root", ""); 
+	$statment = $connection->prepare($query);
+	$statment->execute();
 
-echo $shortUrl;
+}
 
-die();
-@mysql_connect('localhost','root','');
-$query = "INSERT INTO urls (tinurl, original) VALUES ('$shortUrl', '$clientURL')";
-mysql_select_db('urls');
-mysql_query($query);
+$clientURL = getClientUrl();	
+$shortURL = getRandomToken(5);
+storeShortUrl($shortURL, $clientURL);
