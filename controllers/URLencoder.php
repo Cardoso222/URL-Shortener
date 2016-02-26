@@ -14,6 +14,7 @@ function getClientUrl(){
 function getRandomToken($size){
 	
 	$str = 'abcdefghijlmnopkrstuvxzABCDEFGHIJLMNOPQRSTUVXZ';
+
 	$token = ''; 
 	for($i=0; $i<$size; $i++){
 		$token .= $str[rand(1,46)];
@@ -35,4 +36,5 @@ function storeShortUrl($shortURL, $clientURL){
 
 $clientURL = getClientUrl();	
 $shortURL = getRandomToken(5);
+echo '<b>URL GERADA :</b>' . $shortURL;
 storeShortUrl($shortURL, $clientURL);

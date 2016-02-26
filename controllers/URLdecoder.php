@@ -34,4 +34,4 @@ function setRequest($urlEncoded){
 //debug stff
 $urlEncoded = getEncodedUrl();
 setRequest($urlEncoded);	
-echo getDecodedUrl($urlEncoded);
+echo '<b>URL ORIGINAL:</b>' . getDecodedUrl($urlEncoded);
