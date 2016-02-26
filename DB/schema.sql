@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `shortener`.`urls` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `shortURL` VARCHAR(255) NOT NULL,
   `clientURL` VARCHAR(255) NOT NULL,
-  `requests` INT,
+  `requests` INT DEFAULT 0,
   
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
