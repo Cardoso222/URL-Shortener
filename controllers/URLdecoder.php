@@ -1,22 +1,26 @@
 <?php 
+require_once('../models/db.php');
 
 function getEncodedUrl(){
 	if( isset($_POST['url']) & !empty($_POST['url']) ) {
 		$urlEncoded = trim(strip_tags( $_POST['url'] ));
 		return $urlEncoded;
 	}else{
-		die('URL INVÁLIDA');	
+		die('Please give one correct url');	
 	}
 }
 
 function getDecodedUrl($urlEncoded){
 
 	$query = "SELECT * FROM urls WHERE shortURL = '$urlEncoded'";
-	$connection = new PDO("mysql:host=localhost;dbname=shortener", "root", ""); 
+	$connection = Database::connect(); 
 	$statement = $connection->query($query);
-	while ($object = $statement->fetch(PDO::FETCH_OBJ)) {
-		//check the number of rows with rowcount or something like that
-		return $object->clientURL;
+	if($statement->rowCount() > 0){
+		while ($object = $statement->fetch(PDO::FETCH_OBJ)) {
+			return $object->clientURL;
+		}
+	}else{
+		return "can't find this url in our database =/";
 	}
 }
 
@@ -24,7 +28,7 @@ function getDecodedUrl($urlEncoded){
 function setRequest($urlEncoded){
 
 	$query = "UPDATE urls SET requests = requests + 1 WHERE shortURL = '$urlEncoded'";
-	$connection = new PDO("mysql:host=localhost;dbname=shortener", "root", ""); 
+	$connection = Database::connect(); 
 	$statement = $connection->query($query);
 }
 

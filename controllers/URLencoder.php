@@ -1,4 +1,5 @@
 <?php 
+require_once('../models/db.php');
 
 function getClientUrl(){
 	if( isset($_POST['url']) & !empty($_POST['url']) ) {
@@ -7,7 +8,7 @@ function getClientUrl(){
 		return $clientURL;
 	}
 	else {
-		die("URL INVÁLIDA");
+		die("Please give one correct url");
 	}
 }
 
@@ -29,7 +30,7 @@ function getRandomToken($size){
 function storeShortUrl($shortURL, $clientURL){
 
 	$query = "INSERT INTO urls (shortURL, clientURL) VALUES ('$shortURL', '$clientURL')";
-	$connection = new PDO("mysql:host=localhost;dbname=shortener", "root", ""); 
+	$connection = Database::connect();
 	$statment = $connection->prepare($query);
 	$statment->execute();
 
