@@ -28,7 +28,7 @@ function setRequest($urlEncoded){
 	$statement = $connection->query($query);
 }
 
-//debug stff
+
 $urlEncoded = getEncodedUrl();
 setRequest($urlEncoded);	
 echo getDecodedUrl($urlEncoded);

@@ -2,15 +2,16 @@
 <html>
 <head>
 	<title>URL - Shortener</title>
-	<script src="../js/jquery.1.12.0.min.js"></script>
+	<script src="../assets/js/jquery.1.12.0.min.js"></script>
 </head>
 <body>
-
+	<h1>URL - Shortener</h1>		
 	<input type="text" maxlength="255" id="url">
 	<input type="radio" name="handle" id="handle" value="decode" > Decode 
 	<input type="radio" name="handle" id="handle" value="encode"> Encode 
-	<br><input id="button" type="submit" value="go">
-	<div id="div1"></div>
+	<input id="button" type="submit" value="go">
+	<div id="div1" style="margin-top:5%"></div>
+	<img src="../assets/img/loading.gif" style="display: none; height: 146px; margin-top: -60px;" id="loadimage">
 </body>
 </html>
 
@@ -28,7 +29,12 @@
 			url: "../controllers/"+reference, 
 			type: 'POST',
 			data:{url : url},
+			beforeSend: function(){
+				$("#div1").html('');
+				$('#loadimage').css('display','block');
+			},
 			success: function(result){
+				$('#loadimage').css('display','none');
 				$("#div1").html(result);
 			}});
 	}); 
