@@ -5,8 +5,15 @@ function getEncodedUrl(){
 	if( isset($_POST['url']) & !empty($_POST['url']) ) {
 		$urlEncoded = trim(strip_tags( $_POST['url'] ));
 		return $urlEncoded;
-	}else{
-		die('Please give one correct url');	
+	}
+	
+	if( isset($_GET['url']) & !empty($_GET['url'])) {
+		$urlEncoded = trim(strip_tags($_GET['url']));
+		return $urlEncoded;
+	}
+
+	else {
+		die("Please give one correct url");
 	}
 }
 
@@ -35,4 +42,4 @@ function setRequest($urlEncoded){
 
 $urlEncoded = getEncodedUrl();
 setRequest($urlEncoded);	
-echo getDecodedUrl($urlEncoded);
+echo json_encode(getDecodedUrl($urlEncoded));

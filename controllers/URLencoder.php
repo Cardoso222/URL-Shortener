@@ -2,11 +2,17 @@
 require_once('../models/db.php');
 
 function getClientUrl(){
-	if( isset($_POST['url']) & !empty($_POST['url']) ) {
 
+	if( isset($_POST['url']) & !empty($_POST['url']) ) {
 		$clientURL = trim(strip_tags( $_POST['url'] ));
 		return $clientURL;
 	}
+	
+	if( isset($_GET['url']) & !empty($_GET['url'])) {
+		$clientURL = trim(strip_tags($_GET['url']));
+		return $clientURL;
+	}
+
 	else {
 		die("Please give one correct url");
 	}
@@ -38,5 +44,5 @@ function storeShortUrl($shortURL, $clientURL){
 
 $clientURL = getClientUrl();	
 $shortURL = getRandomToken(5);
-echo $shortURL;
+echo json_encode($shortURL);
 storeShortUrl($shortURL, $clientURL);
