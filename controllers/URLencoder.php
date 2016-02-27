@@ -1,12 +1,13 @@
 <?php 
-ini_set('display_errors',1);
-ini_set('display_startup_erros',1);
-error_reporting(E_ALL);
 
 function getClientUrl(){
-	if( isset($_GET['url']) ) {
-		$clientURL = trim(strip_tags( $_GET['url'] ));
+	if( isset($_POST['url']) & !empty($_POST['url']) ) {
+
+		$clientURL = trim(strip_tags( $_POST['url'] ));
 		return $clientURL;
+	}
+	else {
+		die("URL INVÁLIDA");
 	}
 }
 
@@ -14,17 +15,17 @@ function getClientUrl(){
 function getRandomToken($size){
 	
 	$str = 'abcdefghijlmnopkrstuvxzABCDEFGHIJLMNOPQRSTUVXZ';
-
 	$token = ''; 
 	for($i=0; $i<$size; $i++){
 		$token .= $str[rand(1,46)];
  	}
  	$domain = 'localhost/';
  	$token = $domain.$token;
+ 	
  	return $token;
 }
 
-//store url inside of database
+//store the shorturl inside of database
 function storeShortUrl($shortURL, $clientURL){
 
 	$query = "INSERT INTO urls (shortURL, clientURL) VALUES ('$shortURL', '$clientURL')";
@@ -36,5 +37,5 @@ function storeShortUrl($shortURL, $clientURL){
 
 $clientURL = getClientUrl();	
 $shortURL = getRandomToken(5);
-echo '<b>URL GERADA :</b>' . $shortURL;
+echo $shortURL;
 storeShortUrl($shortURL, $clientURL);

@@ -7,7 +7,7 @@ USE `shortener` ;
 DROP TABLE IF EXISTS `shortener`.`urls` ;
 CREATE TABLE IF NOT EXISTS `shortener`.`urls` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
-  `shortURL` VARCHAR(255) NOT NULL,
+  `shortURL` VARCHAR(255) NOT NULL UNIQUE,
   `clientURL` VARCHAR(255) NOT NULL,
   `requests` INT DEFAULT 0,
   

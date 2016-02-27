@@ -1,14 +1,11 @@
 <?php 
-ini_set('display_errors',1);
-ini_set('display_startup_erros',1);
-error_reporting(E_ALL);
 
 function getEncodedUrl(){
-	if( isset($_GET['decode']) ) {
-		$urlEncoded = trim(strip_tags( $_GET['decode'] ));
+	if( isset($_POST['url']) & !empty($_POST['url']) ) {
+		$urlEncoded = trim(strip_tags( $_POST['url'] ));
 		return $urlEncoded;
 	}else{
-		die();	
+		die('URL INVÁLIDA');	
 	}
 }
 
@@ -34,4 +31,4 @@ function setRequest($urlEncoded){
 //debug stff
 $urlEncoded = getEncodedUrl();
 setRequest($urlEncoded);	
-echo '<b>URL ORIGINAL:</b>' . getDecodedUrl($urlEncoded);
+echo getDecodedUrl($urlEncoded);
