@@ -12,8 +12,8 @@ Simple URL Shortener
 
 #How to Use
 
--This application have one simple workflow, you just can use the WebView 'http://localhost/URLshortener/views/' who make through ajax one requisition to encode or decode the url.
+- This application have one simple workflow, you just can use the WebView 'http://localhost/URLshortener/views/' who make through ajax one requisition to encode or decode the url.
 
 OR
 
-- You can just use in your application making some requests to 'URLencoder.php' or 'URLdecoder.php' passing the url through POST and he's bring to you the result. 
+- You can just use in your application making some requests to 'URLencoder.php' or 'URLdecoder.php' passing the url through POST or GET and he's brings to you the json result. 
