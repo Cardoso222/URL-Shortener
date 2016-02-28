@@ -10,7 +10,7 @@
 	<input type="radio" name="handle" id="handle" value="decode" > Decode 
 	<input type="radio" name="handle" id="handle" value="encode"> Encode 
 	<input id="button" type="submit" value="go">
-	<div id="div1" style="margin-top:5%"></div>
+	<div id="result" style="margin-top:5%"></div>
 	<img src="../assets/img/loading.gif" style="display: none; height: 146px; margin-top: -60px;" id="loadimage">
 </body>
 </html>
@@ -30,12 +30,12 @@
 			type: 'POST',
 			data:{url : url},
 			beforeSend: function(){
-				$("#div1").html('');
+				$("#result").html('');
 				$('#loadimage').css('display','block');
 			},
 			success: function(result){
 				$('#loadimage').css('display','none');
-				$("#div1").html(result);
+				$("#result").html(JSON.parse(result));
 			}});
 	}); 
 </script>
