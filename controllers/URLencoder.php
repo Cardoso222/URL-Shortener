@@ -44,5 +44,5 @@ function storeShortUrl($shortURL, $clientURL){
 
 $clientURL = getClientUrl();	
 $shortURL = getRandomToken(5);
-echo json_encode($shortURL);
 storeShortUrl($shortURL, $clientURL);
+echo json_encode($shortURL);
