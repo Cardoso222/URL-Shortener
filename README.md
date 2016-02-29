@@ -7,9 +7,10 @@ Simple URL Shortener
 - Apache Server or similar.
 
 #Configuration
-
-- First execute the script in DB/create.sql on your database, this gonna create the new database who name is 'shortener'.
-- Second execute the script in DB/schema.sql on your database, this gonna create one new table who name is 'urls'.
+Don't have any requirements ?
+- sudo apt-get install php5 mysql-server php5-mysql.   This must solve =D
+- Execute the script in DB/create.sql on your database, this gonna create the new database who name is 'shortener'.
+- Make the same with DB/schema.sql on your database, this gonna create one new table who name is 'urls'.
 
 OR you can just use docker =)
 ## Docker Container
