@@ -44,7 +44,7 @@ and finally in your browser:
 
 #How to Use
 
-- This application have one simple workflow, you just can use the WebView 'http://localhost/URL-Shortener/views/' who make through ajax one requisition to encode or decode the url.
+- This application have one simple workflow, you can just use the WebView 'http://localhost/URL-Shortener/views/' who make through ajax one requisition to encode or decode the url.
 
 OR
 
