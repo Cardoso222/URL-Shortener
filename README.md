@@ -2,13 +2,44 @@
 Simple URL Shortener
 
 #Requirements
-- PHP 5.x
-- MySQL
+- PHP 5.x.
+- MySQL.
+- Apache Server or similar.
 
 #Configuration
 
 - First execute the script in DB/create.sql on your database, this gonna create the new database who name is 'shortener'.
 - Second execute the script in DB/schema.sql on your database, this gonna create one new table who name is 'urls'.
+
+OR you can just use docker =)
+## Docker Container
+
+If you dont have Docker just: 
+  - sudo apt-get install docker
+
+Now you can download the container with all configuration running the command:
+  - sudo docker pull cardoso222/urlshortener
+
+If you have apache and mysql running locally, is important you stop these local services. So:
+
+  - sudo service apache2 stop
+  - sudo service mysql stop
+
+And now
+
+You can get the IMAGE_ID running:
+  - sudo docker images 
+
+To start the Container:
+  - sudo docker run -t -i -p 80:80 -p 3306:3306 IMAGE_ID /bin/bash
+
+Inside the container, start the script who make the apache and mysql start:
+
+  - ./autostart.sh
+
+and finally in your browser:
+
+  - http://localhost/URL-Shortener/
 
 #How to Use
 
